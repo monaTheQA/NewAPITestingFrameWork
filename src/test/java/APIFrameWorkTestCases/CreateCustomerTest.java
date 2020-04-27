@@ -1,6 +1,7 @@
 package APIFrameWorkTestCases;
 import static io.restassured.RestAssured.given;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import APIFrameWorkAPIs.CreateCustomerAPI;
@@ -20,9 +21,10 @@ public class CreateCustomerTest extends BaseTest {
 		response.prettyPrint();
 		String customerId = response.jsonPath().get("id");
 		String customerName = response.jsonPath().get("name");
-		System.out.println(response.statusCode());
+		int statusCode =response.statusCode();
 		System.out.println("New Customer Id is : "+ customerId);
 		System.out.println("New Customer Name is : "+ customerName);
+		Assert.assertEquals(statusCode, 200);
 
 		
 		
